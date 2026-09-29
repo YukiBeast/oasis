@@ -1,0 +1,1 @@
+# Child class for univariate logic
