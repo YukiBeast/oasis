@@ -1,8 +1,8 @@
 # OASIS: Online App for Survey Interactive Study
-
 This repo contains code and documentation for an app for interactive exploration of survey data.
 
 ## Repo structure:
+```text
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml             # CI/CD script to compile and deploy app to Shinylive WebAssembly
@@ -28,3 +28,4 @@ This repo contains code and documentation for an app for interactive exploration
 ├── app.R                          # Minimal Shiny UI/Server orchestrator that dynamically sources R/
 ├── .gitignore                     # Prevents local RStudio settings and history from being committed
 └── README.md                      # Deployment instructions and architectural guide for colleagues
+```
