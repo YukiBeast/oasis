@@ -31,9 +31,21 @@ This repo contains code and documentation for an app for interactive exploration
 ```
 ## Data Contract
 
-## The data
-...
+### The data
+To ensure seamless integration with the codebook and the automated extraction pipeline, the raw survey dataset must adhere to a strict wide-format structure. The application expects the data to be prepared with the following specifications:
 
+- Wide Format Configuration: Each row must represent a single respondent, and each column must represent a distinct variable or data point.
+
+- Single-Choice & Numeric Questions: Represented by a single column per question (e.g., AA01), containing the selected response or continuous value.
+
+- Multiple-Choice Questions (MCQ): Spread across multiple distinct columns, with one column dedicated to every possible answer option for that specific question (e.g., BB02_01, BB02_02, BB02_03).
+
+- Mandatory `id` Column: A unique identifier required for every respondent in the dataset to ensure accurate cross-tabulation and tracking.
+
+- Mandatory `missing` Column: A calculated numeric column indicating the overall percentage of missing answers for each respondent, used for quality control and filtering within the dashboard.
+
+What this means for deployment:
+Formatting the dataset in this exact manner guarantees that the load_data.R script and the underlying extraction classes (extract.single and extract.multiple) can automatically reshape, pivot, and evaluate the data without requiring custom pre-processing scripts or manual data wrangling prior to launch.
 ### The codebook
 
 The codebook is the bridge between the raw survey data and the OASIS application. Mapping the dataset in this Excel file dictates exactly how the dashboard processes, translates, and visualizes the data without requiring a single modification to the underlying R code.
