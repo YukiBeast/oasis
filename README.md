@@ -23,7 +23,10 @@ This repo contains code and documentation for an app for interactive exploration
 │   │   ├── bar_plot.R              # Child class containing univariate bar chart geometry
 │   │   └── bivariate_plot.R        # Child class managing cross-tabulated bivariate plotting logic
 │   └── tables/                    # R6 classes for localized tabular outputs
-│       └── cross_table.R           # Generates dynamic, cross-tabulated HTML or DT tables
+│   |   └── cross_table.R           # Generates dynamic, cross-tabulated HTML or DT tables
+|   |__ test/
+|       |__ testthat/              # Contains scripts testing all main function (e.g. test-load_data)
+        |__ testthat.R 
 ├── template_codebook.xlsx         # Mandatory blank template defining column names and variable classes
 ├── app.R                          # Minimal Shiny UI/Server orchestrator that dynamically sources R/
 ├── .gitignore                     # Prevents local RStudio settings and history from being committed
