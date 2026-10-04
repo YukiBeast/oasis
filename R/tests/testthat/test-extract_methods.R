@@ -9,6 +9,7 @@ source(here("R/extract/return_empty_data.R"))
 source(here("R/extract/extract_binned.R"))
 source(here("R/extract/extract_ordinal.R"))
 source(here("R/extract/extract_categorical.R"))
+source(here("R/extract/extract_multiple.R"))
 
 
 # Define mock_data and mock_deck for all tests:
@@ -138,7 +139,7 @@ test_that(
 # test for extract_multiple_choice()
 # ==================================================================
 test_that(
-  "The method extract.multiple() correctly counts answers from MCQ and that their labels are handled correctly",
+  "The method extract.multiple_choice() correctly counts answers from MCQ and that their labels are handled correctly",
   {
     extracted <- extract(mock_deck$DD01, mock_data)$data
     expect_data_frame(extracted, ncols = 2)
