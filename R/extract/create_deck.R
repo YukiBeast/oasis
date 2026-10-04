@@ -25,7 +25,7 @@ create_deck <- function(data, codebook, scales) {
         
       } else if (!is.na(row$scale) && row$scale == "categorical") {
         # CASE 2: Categorical (e.g., Geschlecht / Gender)
-        class(card) <- c("single_choice", "categorical")
+        class(card) <- c("categorical", "single_choice")
         
       } else if (!is.na(row$scale) && (row$scale == "numerical" || row$scale == "numeric")) {
         # CASE 3: Numeric (e.g., Alter / Age)
@@ -43,7 +43,7 @@ create_deck <- function(data, codebook, scales) {
           card$breaks <- as.numeric(strsplit(breaks_clean, ",")[[1]])
           
           # 3. Assign the ordinal class so it behaves like standard single choice
-          class(card) <- c("ordinal", "single_choice")
+          class(card) <- c("binned", "single_choice")
         }
       }
     }
