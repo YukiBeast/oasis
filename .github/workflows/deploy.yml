@@ -26,4 +26,4 @@ jobs:
             any::here
 
       - name: Run test suite
-        run: Rscript tests/testthat.R
+        run: Rscript R/tests/testthat.R
