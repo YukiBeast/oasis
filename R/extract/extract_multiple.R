@@ -12,12 +12,10 @@ extract.multiple_choice <- function(x, data, ...) {
   
   all_answers <- unique(res$answer1)
   
-  # Filtert nur die echten Auswahlen und behält ID + Name der Option
-  res <- res[,
-             .(id, answer1 = factor(answer1,
-               levels = all_answers))]
+  res <- as.data.frame(res)
+  res$answer1 <- factor(res$answer1, levels = all_answers)
   
   return(list(meta = x,
-              data = as.data.frame(res)))
+              data = res))
   
 }
