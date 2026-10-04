@@ -16,6 +16,6 @@ extract.multiple_choice <- function(x, data, ...) {
   res$answer1 <- factor(res$answer1, levels = all_answers)
   
   return(list(meta = x,
-              data = res))
+              data = res[, c("id", "answer1")]))
   
 }

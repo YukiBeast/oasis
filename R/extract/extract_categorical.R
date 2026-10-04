@@ -1,9 +1,9 @@
 extract.categorical <- function(x, data, ...) {
   
-  # x: the card object from the deck (e.g., deck$CC01) with class ("binned", "single")
+  # x: the card object from the deck (e.g., deck$CC01) with class ("categorical", "single")
   # will have:
   #   - x$name: a string e.g. "CC01" indicating the item's col name in the data
-  #   - x$label: a string e.g. "Sport frequency" indicating which name should the variable have in the UI
+  #   - x$label: a string e.g. "Favourite color" indicating which name should the variable have in the UI
 
   # data: dataframe, the raw survey dataset
   
