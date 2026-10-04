@@ -7,8 +7,8 @@ library(here)
 source(here("R/extract/extract_generics.R"))
 source(here("R/extract/return_empty_data.R"))
 source(here("R/extract/extract_binned.R"))
-source("R/extract/extract_ordinal.R")
-source("R/extract/extract_categorical.R")
+source(here("R/extract/extract_ordinal.R"))
+source(here("R/extract/extract_categorical.R"))
 
 
 # Define mock_data and mock_deck for all tests:

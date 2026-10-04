@@ -48,7 +48,7 @@ test_that("create_deck assigns correct class and attributes to all items in the 
   expect_null(deck$AA01$breaks)
   
   # Case 2: Binned Numeric (Class 'single', Scale 'numeric', breaks provided)
-  expect_class(deck$BB01, c("ordinal", "single_choice"))
+  expect_class(deck$BB01, c("binned", "single_choice"))
   expect_equal(deck$BB01$breaks, c(18, 35, 65))
   
   # Case 3: Standard Ordinal (Class 'single', Scale 'freq')

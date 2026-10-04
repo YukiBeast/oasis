@@ -24,6 +24,7 @@ jobs:
             any::testthat
             any::checkmate
             any::here
+            any::readxl
 
       - name: Run test suite
         run: Rscript R/tests/testthat.R
