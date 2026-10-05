@@ -5,34 +5,45 @@ This repo contains code and documentation for an app for interactive exploration
 ```text
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml             # CI/CD script to compile and deploy app to Shinylive WebAssembly
+│       └── deploy.yml                # CI/CD script to compile and deploy app to Shinylive WebAssembly
 ├── www/
-│   ├── custom.css                 # Global CSS overrides for UI elements not covered by bslib
-│   └── logo.png                   # Client or consulting unit branding image
+│   ├── custom.css                    # Global CSS overrides for UI elements not covered by bslib
+│   └── logo.png                      # Client or consulting unit branding image
 ├── R/
-│   ├── config.R                   # Global settings (colors, titles); the only file consultants edit
-│   ├── translations.R             # Centralized dictionary and tr() function for EN/DE bilingual UI
-│   ├── load_data.R                # Universal data cleaner that applies the codebook contract safely
-│   ├── extract/                   # S3 classes handling data shaping and transformation
-│   │   ├── create_deck.R          # Constructor that maps codebook variables to their S3 classes
-│   │   ├── extract_generics.R     # Defines the base extract() generic function
-│   │   ├── extract_single.R       # Logic to pull and format single-choice and numeric data
-│   │   └── extract_multiple.R     # Logic to pivot and aggregate multiple-choice checkbox arrays
-│   ├── plots/                     # R6 classes managing visualization state and rendering
-│   │   ├── base_plot.R             # Parent class handling global themes, layouts, and Plotly config
-│   │   ├── bar_plot.R              # Child class containing univariate bar chart geometry
-│   │   └── bivariate_plot.R        # Child class managing cross-tabulated bivariate plotting logic
-│   └── tables/                    # R6 classes for localized tabular outputs
-│   |   └── cross_table.R           # Generates dynamic, cross-tabulated HTML or DT tables
-|   |__ test/
-|       |__ testthat/              # Contains scripts testing all main function (e.g. test-load_data)
-        |__ testthat.R 
-├── template_codebook.xlsx         # Mandatory blank template defining column names and variable classes
-├── app.R                          # Minimal Shiny UI/Server orchestrator that dynamically sources R/
-├── .gitignore                     # Prevents local RStudio settings and history from being committed
-└── README.md                      # Deployment instructions and architectural guide for colleagues
-```
-## Data Contract
+│   ├── config.R                      # Global settings (colors, titles); the only file consultants edit
+│   ├── translations.R                # Centralized dictionary and tr() function for EN/DE bilingual UI
+│   ├── load_data.R                   # Ingestion utility & data cleaner that applies the codebook contract safely
+│   ├── extract/
+│   │   ├── create_deck.R             # Assembles survey metadata deck
+│   │   ├── extract_generic.R         # S3 generic: extract()
+│   │   ├── extract_default.R         # S3 method: extract.default()
+│   │   └── extract_multiple_choice.R # S3 method: extract.multiple_choice()
+│   ├── models/
+│   │   ├── user_data.R               # R6: Ingests raw data & codebook
+│   │   ├── user_choice.R             # R6: Holds & validates UI parameter state
+│   │   └── plot_payload.R            # R6: Validated DTO (data, meta, settings)
+│   ├── pipeline/
+│   │   └── resolve_payload.R         # Functional bridge: resolves to PlotPayload
+│   ├── plots/
+│   │   ├── base_plot.R               # R6 abstract parent: themes, scales, labels
+│   │   ├── bar_plot.R                # R6 concrete child: geometry & rendering
+│   │   └── plot_factory.R            # R6 / service: instantiates plot classes
+│   └── tables/
+│       └── cross_table.R             # Generates dynamic, cross-tabulated HTML or DT tables
+├── test/
+│   └── testthat/
+│       ├── test-extract.R            # S3 extraction tests
+│       ├── test-user_data.R          # UserData tests
+│       ├── test-user_choice.R        # UserChoice tests
+│       ├── test-plot_payload.R       # PlotPayload schema & boundary tests
+│       ├── test-resolve_payload.R    # Orchestration pipeline tests
+│       ├── test-base_plot.R          # Abstract plot methods & styling tests
+│       ├── test-bar_plot.R           # Geometry rendering tests
+│       └── test-plot_factory.R       # Factory dispatch tests
+├── template_codebook.xlsx            # Mandatory blank template defining column names and variable classes
+├── app.R                             # Minimal Shiny UI/Server orchestrator that dynamically sources R/
+├── .gitignore                        # Prevents local RStudio settings and history from being committed
+└── README.md                         # Deployment instructions and architectural guide for colleagues## Data Contract
 
 ### The data
 To ensure seamless integration with the codebook and the automated extraction pipeline, the raw survey dataset must adhere to a strict wide-format structure. The application expects the data to be prepared with the following specifications:
